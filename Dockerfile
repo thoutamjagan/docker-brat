@@ -23,7 +23,7 @@ RUN apt-get install -y python3-pip
 
 RUN pip3 install --upgrade pip
 
-RUN apt-get install git 
+RUN apt-get install git -y
 
 RUN pip3 install git+git://github.com/vitalco/simstring-python-package#egg=simstring && \
     apt-get purge -y --auto-remove wget 
