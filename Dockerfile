@@ -39,3 +39,7 @@ ADD httpd.conf /usr/local/apache2/conf/
 ADD install.sh /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/
 
 RUN /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/install.sh $username $password $admin_email
+
+RUN wget -qO /usr/local/apache2/htdocs/flup-1.0.2.tar.gz "https://www.saddi.com/software/flup/dist/flup-1.0.2.tar.gz"
+RUN tar -xvzf /usr/local/apache2/htdocs/flup-1.0.2.tar.gz -C /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/server/lib/
+
