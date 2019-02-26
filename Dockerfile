@@ -15,9 +15,11 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     wget -qO /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz "http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz" && \
     tar -xvzf /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz && \
     mv /usr/local/apache2/brat-v1.3_Crunchy_Frog/ /usr/local/apache2/htdocs/ && \
-    rm /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz
-    
+    rm /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz 
+
 RUN apt-get install -y python3 
+
+RUN apt-get update -y
 
 RUN apt-get install -y python3-pip
 
@@ -29,13 +31,11 @@ RUN pip3 install git+git://github.com/vitalco/simstring-python-package#egg=simst
     apt-get purge -y --auto-remove wget 
 
 
-
-ARG username
-ARG password
-ARG admin_email
+ARG username=jag
+ARG password=Password
+ARG admin_email=jaganthoutam@gmail.com
 
 ADD httpd.conf /usr/local/apache2/conf/
 ADD install.sh /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/
-RUN apt-get update && apt-get install -y python
 
 RUN /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/install.sh $username $password $admin_email
