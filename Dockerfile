@@ -15,11 +15,15 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     wget -qO /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz "http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz" && \
     tar -xvzf /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz && \
     mv /usr/local/apache2/brat-v1.3_Crunchy_Frog/ /usr/local/apache2/htdocs/ && \
-    rm /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz && \
-    apt-get install -y python3 && \
-    apt-get install -y python-pip && \
-    pip3 install --upgrade pip && \
-    pip3 install git+git://github.com/vitalco/simstring-python-package#egg=simstring && \
+    rm /usr/local/apache2/htdocs/$BRAT_VERSION.tar.gz
+    
+RUN apt-get install -y python3 
+
+RUN apt-get install -y python3-pip
+
+RUN pip3 install --upgrade pip
+
+RUN pip3 install git+git://github.com/vitalco/simstring-python-package#egg=simstring && \
     apt-get purge -y --auto-remove wget 
 
 
